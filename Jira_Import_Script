@@ -1,0 +1,220 @@
+function isResponsive(row, column) {
+  var sheet = SpreadsheetApp.getActive().getSheetByName('Sprint Planning'); 
+  var responsive = sheet.getRange(row, column).getValue();
+  if (responsive == true || responsive == "TRUE") {
+    return true;
+  }
+  return false;
+}
+
+function getResponsiveTime() {
+   return 1.4;
+}
+
+function getSprintFromResourcePlanning(row,column) {
+  var sheet = SpreadsheetApp.getActive().getSheetByName('Resource Planning');
+  return sheet.getRange(row,1).getValue();
+}
+
+function getSprintFromResourcePlanningTest() {
+  var ans = getSprintFromResourcePlanning(19,1);
+  Logger.log(ans);  
+}
+
+function getSprintFromSprintPlanning(row, column) {
+  var sheet = SpreadsheetApp.getActive().getSheetByName('Sprint Planning');
+  return sheet.getRange(row, 6).getValue();
+}
+
+function getSprintFromSprintPlanningTest() {
+  var ans = getSprintFromSprintPlanning(8,6);
+  Logger.log(ans);
+}
+
+function getCellValueFromResourcePlanning(row, column) {
+  var sheet = SpreadsheetApp.getActive().getSheetByName('Resource Planning'); 
+  return sheet.getRange(row, column).getValue();
+}
+
+function getCellValueFromResourcePlanningTest(row, column) {
+  Logger.log(getCellValueFromResourcePlanning(18, 6));
+}
+
+function getCellValueFromSprintPlanning(row, column) {
+  var sheet = SpreadsheetApp.getActive().getSheetByName('Sprint Planning'); 
+  return sheet.getRange(row, column).getValue();
+}
+
+function getCellValueFromSprintPlanningTest() {
+  Logger.log(getCellValueFromSprintPlanning(3,5));
+}
+
+function getResponsiveMultiplier() {
+  return 4.0; 
+}
+
+function calcResponsiveTime(row, column) {
+  var sheet = SpreadsheetApp.getActive().getSheetByName('Sprint Planning'); 
+  var data = sheet.getDataRange().getValues();
+  var this_row = row;
+  var this_column = column;
+  var responsiveTime = getResponsiveTime();
+  var responsiveMultiplier = getResponsiveMultiplier();
+  var ans = 0; 
+  
+  while(getCellValueFromSprintPlanning(this_row, this_column) != "") {
+    if (isResponsive(2, 12) == true) {
+      ans = getCellValueFromSprintPlanning(this_row, this_column) * responsiveMultiplier;
+    }
+    sheet.getRange(this_row, this_column).setValue(ans);
+    this_column = column;
+    this_row++;
+  }
+}
+
+function calcResponsiveTimeTest() {
+  calcResponsiveTime(2, 4);
+}
+
+
+
+
+function assignFEDHours() {
+  calcDefectResolutionHelper(5, 2);
+}
+
+function assignBEDHours() {
+  calcDefectResolutionHelper(17, 2);
+}
+
+function getDefectResolution() {
+ return 1.5; 
+}
+
+function calcDefectResolutionHelper(row, column) {
+  var this_row = row;
+  var this_column = column;
+  
+  while(getCellValueFromResourcePlanning(this_row, this_column) != "") {
+    calcDefectResolution(this_row, this_column);
+    this_column = this_column + 2;
+  }
+}
+
+function calcDefectResolution(row, column) {
+  var sheet = SpreadsheetApp.getActive().getSheetByName('Resource Planning'); 
+  var data = sheet.getDataRange().getValues();
+  var this_row = row;
+  var this_column = column;
+  var defectResolution = getDefectResolution();
+  
+  while(getCellValueFromResourcePlanning(this_row, this_column) != "") {
+    if (getSprintFromResourcePlanning(this_row, this_column) > 1) {
+      sheet.getRange(this_row, this_column + 1).setValue(getCellValueFromResourcePlanning(this_row, this_column) * defectResolution);
+    }
+    this_column = column;
+    this_row++;
+  }
+}
+
+function defectResolutionTest() {
+  // calcDefectResolutionHelper(2, 2);
+  assignFEDHours();
+  assignBEDHours();
+}
+
+
+
+
+
+function calcTotalSprints(row, column) {
+  var sheet = SpreadsheetApp.getActive().getSheetByName('Sprint Planning'); 
+  var data = sheet.getDataRange().getValues();
+  var this_row = row;
+  var this_column = column;
+  var ans = 0;
+  
+  while(getCellValueFromSprintPlanning(this_row, this_column) != "") {
+    if (getCellValueFromSprintPlanning(this_row, this_column) > ans) {
+      ans = getCellValueFromSprintPlanning(this_row, this_column);
+    }
+    this_column = column;
+    this_row++;
+  }
+  return ans;
+}
+
+function calcTotalSprintsTest() {
+  var ans = calcTotalSprints(2, 6);
+  Logger.log(ans);
+}
+
+
+
+
+function getFEDHoursBySprint(row, column, sprint) {
+  var sheet = SpreadsheetApp.getActive().getSheetByName('Sprint Planning');
+  var sheet2 = SpreadsheetApp.getActive().getSheetByName('Resource Planning'); 
+  var this_row = row;
+  var this_column = column;
+  var place_ans_row = 5;
+  var place_ans_column = 2;
+  var ans = 0;
+  
+  for (var i = 1; i <= sprint; i++) {
+    ans = 0;
+    while(getCellValueFromSprintPlanning(this_row, this_column) != "") {
+      if (getSprintFromSprintPlanning(this_row, this_column - 1) == i) {
+        ans = ans + getCellValueFromSprintPlanning(this_row, this_column);  
+      }
+      this_column = column;
+      this_row++;
+    }
+    sheet2.getRange(place_ans_row, place_ans_column).setValue(ans);
+    place_ans_row++;
+    this_column = column;
+    this_row = row;
+  }
+}
+
+function getFEDHoursBySprintTest() {
+  getFEDHoursBySprint(14, 2, calcTotalSprints(14, 1));
+}
+
+function getBEDHoursBySprint(row, column, sprint) {
+  var sheet = SpreadsheetApp.getActiveSheet(); // test code
+  var data = sheet.getDataRange().getValues();
+  var this_row = row;
+  var this_column = column;
+  
+  var place_ans_row = 15;
+  var place_ans_column = 12;
+  
+  var ans = 0;
+  
+  for (var i = 1; i <= sprint; i++) {
+    ans = 0;
+    while(getCellValue(this_row, this_column) != "") {
+      if (getSprint(this_row, this_column - 1) == i) {
+        ans = ans + getCellValue(this_row, this_column);  
+      }
+      this_column = column;
+      this_row++;
+    }
+    sheet.getRange(place_ans_row, place_ans_column).setValue(ans);
+    place_ans_row++;
+    this_column = column;
+    this_row = row;
+  }
+}
+
+function getBEDHoursBySprintTest() {
+  getBEDHoursBySprint(14, 3, calcTotalSprints(14, 1));
+}
+
+// TODO: Add trigger to live sheet
+// Project trigger calls this method
+function testOnChange(e) {
+  getFEDHoursBySprintTest();
+  getBEDHoursBySprintTest();
+}
