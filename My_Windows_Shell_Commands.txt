@@ -1,0 +1,12 @@
+Search for a specific file
+dir secret.doc /s /p
+
+Open location in explorer
+explorer .
+
+Search for a specific folder
+dir <folder name> /AD /s
+
+See the status of a certain port
+netstat -na | find "2990"
+
