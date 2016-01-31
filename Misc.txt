@@ -12,3 +12,13 @@ Take time to understand what everything does. Modify example as
 needed
 -The methods you see in examples and others' code might help you
 solve previous problems
+
+-An array is the same thing as a pointer
+char[] same as char*
+a char is an int in C
+a char * can get &value
+
+-A large part of building a program is starting by building 
+something you do know. And identifying what you don't know how
+to do yet as quickly as possible. Weed out weakensses in 
+your understanding as ruthlessly as possible
