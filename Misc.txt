@@ -1,0 +1,9 @@
+This is for extra tips.
+Text file for quick adds.
+
+-When building something, google what methods you might need.
+Before deep diving an learning how a particular method works too soon.
+Make sure it is a method that you will need to build your program.
+
+-Run small tests on new methods
+
