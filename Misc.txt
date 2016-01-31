@@ -10,3 +10,5 @@ Make sure it is a method that you will need to build your program.
 -Copy and paste examples. Don't spend all the time to retype them.
 Take time to understand what everything does. Modify example as 
 needed
+-The methods you see in examples and others' code might help you
+solve previous problems
