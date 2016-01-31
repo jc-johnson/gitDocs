@@ -22,3 +22,7 @@ a char * can get &value
 something you do know. And identifying what you don't know how
 to do yet as quickly as possible. Weed out weakensses in 
 your understanding as ruthlessly as possible
+
+-Strings In C
+
+The right solution is usually simple, elegant, and beautiful
