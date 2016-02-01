@@ -26,3 +26,8 @@ your understanding as ruthlessly as possible
 -Strings In C
 
 The right solution is usually simple, elegant, and beautiful
+
+Early on, cut out any tools with a super high learning curve i.e. 
+emacs and vim. focus on tools that are simple, intuitive,
+and that you can clearly and cleanly get work done with.
+Notepad++ is great
