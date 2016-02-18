@@ -1,0 +1,33 @@
+This is for extra tips.
+Text file for quick adds.
+
+-When building something, google what methods you might need.
+Before deep diving an learning how a particular method works too soon.
+Make sure it is a method that you will need to build your program.
+
+-Run small tests on new methods
+
+-Copy and paste examples. Don't spend all the time to retype them.
+Take time to understand what everything does. Modify example as 
+needed
+-The methods you see in examples and others' code might help you
+solve previous problems
+
+-An array is the same thing as a pointer
+char[] same as char*
+a char is an int in C
+a char * can get &value
+
+-A large part of building a program is starting by building 
+something you do know. And identifying what you don't know how
+to do yet as quickly as possible. Weed out weakensses in 
+your understanding as ruthlessly as possible
+
+-Strings In C
+
+The right solution is usually simple, elegant, and beautiful
+
+Early on, cut out any tools with a super high learning curve i.e. 
+emacs and vim. focus on tools that are simple, intuitive,
+and that you can clearly and cleanly get work done with.
+Notepad++ is great
