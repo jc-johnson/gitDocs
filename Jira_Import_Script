@@ -178,7 +178,7 @@ function getFEDHoursBySprint(row, column, sprint) {
 }
 
 function getFEDHoursBySprintTest() {
-  getFEDHoursBySprint(14, 2, calcTotalSprints(14, 1));
+  getFEDHoursBySprint(14, 2, calcotalSprints(14, 1));
 }
 
 function getBEDHoursBySprint(row, column, sprint) {

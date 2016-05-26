@@ -1,0 +1,27 @@
+From 'The Art of Throwing JavaScript Errors' by Nicholas C. Zakas
+https://www.nczonline.net/blog/2009/03/03/the-art-of-throwing-javascript-errors/
+
+Key Terms:
+
+Try - lets you test a block of code for errors
+Catch - lets you handle the error
+Throw - lets you create custom errors
+Finally - lets you execute code, after try and catch, regardless of the result
+
+Notes:
+
+Throwing errors makes debugging MUCH easier. Gives you hints as to what went wrong.
+
+Include function name in error message. 
+
+The best place to throw an error is in utility functions - functions that are part of
+general programming environment and might be used in a number of places.
+Only throw errors where they will already occur.
+
+Use errors from libraries' public interfaces which give you known error conditions.
+
+Never have a try-catch statement with an empty catch clause. Always handle 
+the error in some way. Don't just simply wrap an error in a try-catch block,
+you must deal with it in someway (throw statement). 
+
+Throwing errors is an art. 

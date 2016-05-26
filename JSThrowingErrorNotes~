@@ -1,0 +1,4 @@
+Try - lets you test a block of code for errors
+Catch - lets you handle the error
+Throw - lets you create custom errors
+Finally 

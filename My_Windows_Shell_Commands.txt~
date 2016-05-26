@@ -1,0 +1,6 @@
+Search for a specific file
+dir secret.doc /s /p
+
+Open location in explorer
+explorer .
+
